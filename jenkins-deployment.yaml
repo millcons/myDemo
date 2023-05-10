@@ -15,7 +15,7 @@ spec:
         app: jenkins
     spec:
       securityContext:
-        runAsUser: 1001
+        runAsUser: 0
         fsGroup: 1001
       containers:
       - name: jenkins
