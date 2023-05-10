@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins
+  labels:
+    app: jenkins
 spec:
   replicas: 1
   selector:
@@ -13,14 +15,28 @@ spec:
         app: jenkins
     spec:
       containers:
-        - name: jenkins
-          image: jenkins/jenkins:2.404-jdk11
-          ports:
-            - containerPort: 8080
-            - containerPort: 50000
-          volumeMounts:
-            - name: jenkins-home
-              mountPath: /var/jenkins_home
-      volumes:
-        - name: jenkins-home
-          emptyDir: {}
+      - name: jenkins
+        image: jenkins/jenkins:lts
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 50000
+          name: jnlp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+spec:
+  selector:
+    app: jenkins
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  - port: 50000
+    targetPort: 50000
+    name: jnlp
+  type: ClusterIP
