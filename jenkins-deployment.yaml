@@ -24,8 +24,7 @@ spec:
           name: jnlp
         volumeMounts:
           - name: jenkins-home
-            mountPath: /var
-            subpath: jenkins_home
+            mountPath: /var/jenkins_home
       volumes:
         - name: jenkins-home
            persistentVolumeClaim:
