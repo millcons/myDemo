@@ -44,7 +44,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/millcons/testcase
+    path: /mnt/data
   persistentVolumeReclaimPolicy: Retain
 ---
 apiVersion: v1
