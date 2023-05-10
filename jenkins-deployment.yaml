@@ -27,8 +27,10 @@ spec:
             mountPath: /var/jenkins_home
       volumes:
         - name: jenkins-home
-          persistentVolumeClaim:
-            claimName: claim-jenkins
+          hostPath:
+            path: /mnt/data
+#           persistentVolumeClaim:
+#             claimName: claim-jenkins
 ---
 apiVersion: v1
 kind: PersistentVolume
