@@ -58,7 +58,6 @@ spec:
         - name: jenkins-home
            persistentVolumeClaim:
              claimName: claim-jenkins
-
 ---
 apiVersion: v1
 kind: Service
