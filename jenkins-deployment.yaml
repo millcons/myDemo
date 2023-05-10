@@ -34,18 +34,17 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: my-home-volume
-  labels:
-    type: local
+  name: pv-home-jenkins
 spec:
-  storageClassName: manual
   capacity:
     storage: 3Gi
+  volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/data
+  - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /mnt/data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -53,7 +52,7 @@ metadata:
   name: claim-jenkins
   namespace: jenkins
 spec:
-  storageClassName: manual
+  storageClassName: local-storage
   accessModes:
     - ReadWriteOnce
   resources:
