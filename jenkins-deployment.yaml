@@ -19,7 +19,7 @@ spec:
         fsGroup: 1001
       containers:
       - name: jenkins
-        image: jenkins/jenkins:lts
+        image: jenkins/jenkins:2.404
         ports:
         - containerPort: 8080
           name: http
